@@ -54,6 +54,6 @@ set_target_properties(
 target_sources(
         ${PROJECT_NAME}
         PRIVATE
-        main.cpp
-        AssetsLoader.hpp
+        src/main.cpp
+        src/AssetsLoader.hpp
 )
