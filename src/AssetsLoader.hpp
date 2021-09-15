@@ -1,3 +1,12 @@
+/*!
+\file
+\brief Header file for resources loader for SFML of games.
+\defgroup loader
+ Resources:
+    - musics;
+    - textures;
+    - images.
+*/
 #ifndef ASSETS_LOADER_H_
 #define ASSETS_LOADER_H_
 
@@ -16,6 +25,12 @@ namespace fs = std::filesystem;
 
 namespace Loader {
 
+ /*!
+	\brief Resources loader class for SFML of games.
+	\author Dosart
+  \ingroup loader
+	\version 1.0
+*/
 template<typename T>
 class AssetsLoader {
  public:
@@ -28,7 +43,20 @@ class AssetsLoader {
   AssetsLoader(const AssetsLoader<T> &&other) = delete;
   AssetsLoader &operator=(const AssetsLoader<T> &&other) = delete;
 
+  /**
+   * @brief Set formats for correct load Assets.
+   *
+   * @param formats ".png.jpg.bmp" or "|png|jpg|bmp" etc...
+   * @param delim "[.]" because regex etc....
+ */
   void setSupportedFormats(std::string formats, std::string delim);
+  
+   /**
+   * @brief  Load assets with users functor.
+   *
+   * @param folderPath path to folder with assets.
+   * @param loader itetm.loadFromFile(path) u get only path with your formats.
+*/
   void loadAssets(std::string_view folderPath,
                   std::function<void(T &item, const fs::path &itemPath)> loader);
 
