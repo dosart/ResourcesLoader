@@ -1,3 +1,6 @@
+
+#include "AssetsLoader.hpp"
+
 namespace Loader {
 
 template<typename T>
@@ -8,7 +11,7 @@ void AssetsLoader<T>::setSupportedFormats(std::string formats, std::string delim
 
   for (auto &&format: lst)
     if (!format.empty())
-      m_supportedFormats.emplace(std::move("." + format), true);
+      m_supportedFormats.emplace("." + format, true);
 }
 
 template<typename T>
@@ -31,5 +34,21 @@ void AssetsLoader<T>::loadAssets(std::string_view folderPath,
       loader(ref, path);
     }
   }
+}
+
+template<typename T>
+T *AssetsLoader<T>::operator[](std::string_view name) {
+  return getPtr(name);
+}
+
+template<typename T>
+const T *AssetsLoader<T>::getPtr(const std::string_view name) const {
+  return getPtr(name);
+}
+
+template<typename T>
+T *AssetsLoader<T>::getPtr(std::string_view name) {
+  if (auto res = m_storage[name]; res!=std::end(m_storage))
+    return m_storage[name];
 }
 }

@@ -28,7 +28,7 @@ namespace Loader {
  /*!
 	\brief Resources loader class for SFML of games.
 	\author Dosart
-  \ingroup loader
+    \ingroup loader
 	\version 1.0
 */
 template<typename T>
@@ -59,6 +59,10 @@ class AssetsLoader {
 */
   void loadAssets(std::string_view folderPath,
                   std::function<void(T &item, const fs::path &itemPath)> loader);
+
+  T* operator[](std::string_view name);
+  T* getPtr(std::string_view name);
+  const T* getPtr(const std::string_view name) const;
 
  private:
   std::unordered_map<std::string, bool> m_supportedFormats;
