@@ -39,21 +39,4 @@ add_compile_options(
         -Wsign-promo
 )
 
-###################################################################################################
-##
-##      Source files
-##
-###################################################################################################
-
-add_executable(${PROJECT_NAME})
-set_target_properties(
-        ${PROJECT_NAME} PROPERTIES
-        CXX_STANDARD 17
-        CXX_STANDARD_REQUIRED ON
-)
-target_sources(
-        ${PROJECT_NAME}
-        PRIVATE
-        src/main.cpp
-        src/AssetsLoader.hpp
-)
+add_library(${PROJECT_NAME} STATIC src/AssetsLoader.hpp)
