@@ -11,24 +11,22 @@ void AssetsLoader<T>::setSupportedFormats(std::string formats, std::string delim
 
   for (auto &&format: lst)
     if (!format.empty())
-      m_supportedFormats.emplace("." + format, true);
+      m_supportedFormats.emplace("." + format);
 }
 
 template<typename T>
 void AssetsLoader<T>::loadAssets(std::string_view folderPath,
                                  std::function<void(T &, const std::filesystem::path &)> loader) {
 
-  fs::recursive_directory_iterator begin(folderPath);
+  fs::recursive_directory_iterator begin(folderPath, std::filesystem::directory_options::skip_permission_denied);
   fs::recursive_directory_iterator end;
 
   std::vector<fs::path> pathFiles;
-  std::copy(std::make_move_iterator(begin),
-            std::make_move_iterator(end),
-            std::back_inserter(pathFiles));
+  std::copy(begin, end, std::back_inserter(pathFiles));
 
   for (const auto &path: pathFiles) {
     const auto &extension = path.extension().string();
-    if (m_supportedFormats[extension]) {
+    if (auto search = m_supportedFormats.find(extension); search!=std::end(m_supportedFormats)) {
       auto nameFile = path.stem().string();
       auto &ref = m_storage[nameFile];
       loader(ref, path);

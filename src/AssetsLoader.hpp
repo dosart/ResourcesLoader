@@ -12,6 +12,7 @@
 
 #include <unordered_map>
 #include <vector>
+#include "set"
 
 #include <string>
 #include <string_view>
@@ -65,7 +66,7 @@ class AssetsLoader {
   const T* getPtr(const std::string_view name) const;
 
  private:
-  std::unordered_map<std::string, bool> m_supportedFormats;
+  std::set<std::string> m_supportedFormats;
   std::unordered_map<std::string, T> m_storage;
 };
 }
