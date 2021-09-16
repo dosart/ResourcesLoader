@@ -9,7 +9,7 @@ $ cd spdlog && mkdir build && cd build
 $ cmake .. && make -j
 ```
 
-### Usage samples
+#### Usage samples
 
 ```C++
 #include <SFML/Graphics.hpp>
