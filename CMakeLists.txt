@@ -6,7 +6,7 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-set(PROJECT_NAME Assets_Loader)
+set(PROJECT_NAME ResourcesLoader)
 project(${PROJECT_NAME} VERSION 1.0.0
         DESCRIPTION "Assets' loader for SFML Game"
         LANGUAGES CXX
