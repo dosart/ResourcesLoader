@@ -6,11 +6,19 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-set(PROJECT_NAME Assets_Loader)
+set(PROJECT_NAME ResourcesLoader)
 project(${PROJECT_NAME} VERSION 1.0.0
         DESCRIPTION "Assets' loader for SFML Game"
         LANGUAGES CXX
         )
+
+###################################################################################################
+##
+##      Project options
+##
+###################################################################################################
+
+option(USE_TEST "Turn on testing" On)
 
 ###################################################################################################
 ##
@@ -45,15 +53,23 @@ add_compile_options(
 ##
 ###################################################################################################
 
-add_executable(${PROJECT_NAME})
+
+add_library(${PROJECT_NAME} STATIC src/AssetsLoader.hpp src/AssetsLoader.inl)
 set_target_properties(
         ${PROJECT_NAME} PROPERTIES
         CXX_STANDARD 17
         CXX_STANDARD_REQUIRED ON
+        LINKER_LANGUAGE CXX
 )
-target_sources(
-        ${PROJECT_NAME}
-        PRIVATE
-        src/main.cpp
-        src/AssetsLoader.hpp
-)
+
+###################################################################################################
+##
+##      Tests
+##
+###################################################################################################
+
+if (NOT USE_TEST)
+    message(STATUS "Tests is disabled")
+else ()
+    add_subdirectory(test)
+endif ()

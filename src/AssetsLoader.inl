@@ -1,4 +1,3 @@
-
 #include "AssetsLoader.hpp"
 
 namespace Loader {
