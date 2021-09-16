@@ -2,7 +2,14 @@
 
 Recursive Template Loader for simple loading any assets. Used for simple SFML games. 
 
-## Use cases
+#### Static lib version
+```console
+$ git clone https://github.com/dosart/ResourcesLoader.git
+$ cd spdlog && mkdir build && cd build
+$ cmake .. && make -j
+```
+
+### Usage samples
 
 ```C++
 #include <SFML/Graphics.hpp>
