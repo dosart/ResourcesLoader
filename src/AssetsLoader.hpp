@@ -68,6 +68,8 @@ class AssetsLoader {
  private:
   std::set<std::string> m_supportedFormats;
   std::unordered_map<std::string, T> m_storage;
+
+  bool exists(const fs::path& p, fs::file_status s = fs::file_status{});
 };
 }
 

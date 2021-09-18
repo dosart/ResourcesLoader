@@ -17,6 +17,9 @@ template<typename T>
 void AssetsLoader<T>::loadAssets(std::string_view folderPath,
                                  std::function<void(T &, const std::filesystem::path &)> loader) {
 
+  if (!exists(folderPath))
+    return;
+
   fs::recursive_directory_iterator begin(folderPath, std::filesystem::directory_options::skip_permission_denied);
   fs::recursive_directory_iterator end;
 
@@ -48,5 +51,13 @@ T *AssetsLoader<T>::getPtr(std::string_view name) {
   if (auto res = m_storage[name]; res!=std::end(m_storage))
     return m_storage[name];
   return nullptr;
+}
+
+template<typename T>
+bool AssetsLoader<T>::exists(const fs::path &p, fs::file_status s) {
+  if (fs::status_known(s) ? fs::exists(s) : fs::exists(p))
+    return true;
+  else
+    return false;
 }
 }
