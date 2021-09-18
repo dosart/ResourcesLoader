@@ -44,6 +44,17 @@ TEST_F(GoodLoadFixture, TextureLoad) {
   ASSERT_NE(textureLoader->getPtr("asd"), nullptr);
 }
 
+TEST_F(GoodLoadFixture, TextureLoadConst) {
+  textureLoader->setSupportedFormats("png.jpg.bmp", "[.]");
+  textureLoader->loadAssets(resourcesDirPath, [](auto &item, auto path) { item.loadFromFile(path.string()); });
+
+  const auto background = textureLoader->getPtr("background");
+  const auto asd = textureLoader->getPtr("asd");
+
+  ASSERT_NE(background, nullptr);
+  ASSERT_NE(asd, nullptr);
+}
+
 TEST_F(GoodLoadFixture, MusicLoad) {
   musicLoader->setSupportedFormats("wav", "[]");
   musicLoader->loadAssets(resourcesDirPath, [](auto &item, auto path) { item.openFromFile(path.string()); });
