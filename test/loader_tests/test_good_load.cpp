@@ -24,6 +24,7 @@ class GoodLoadFixture : public ::testing::Test {
 
   void TearDown() override {
     delete textureLoader;
+    delete musicLoader;
   }
 
   std::string getResourcesDirPath() {
