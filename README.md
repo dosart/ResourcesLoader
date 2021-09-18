@@ -19,10 +19,10 @@ int main()
 {
     ::Loader::AssetsLoader<sf::Texture> textureLoader;
     textureLoader.setSupportedFormats("png.jpg.bmp", "[.]");
-    textureLoader.loadAssets("./resources", [](auto& item, auto path) {item.loadFromFile(path.string())});
+    textureLoader.loadAssets("./resources", [](auto &item, auto path) { item.loadFromFile(path.string()); });
     
      ::Loader::AssetsLoader<sf::Music> musicLoader;
     musicLoader.setSupportedFormats("waw,ogv", "[,]");
-    musicLoader.loadAssets("./resources", [](auto& item, auto path) {item.loadAssets(path.string())});
+    musicLoader.loadAssets(resourcesDirPath, [](auto &item, auto path) { item.openFromFile(path.string()); });
 }
 ```
