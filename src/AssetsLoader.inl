@@ -14,11 +14,14 @@ void AssetsLoader<T>::setSupportedFormats(std::string formats, std::string delim
 }
 
 template<typename T>
-void AssetsLoader<T>::loadAssets(std::string_view folderPath,
+bool AssetsLoader<T>::loadAssets(std::string_view folderPath,
                                  std::function<void(T &, const std::filesystem::path &)> loader) {
 
   if (!exists(folderPath))
-    return;
+    return false;
+
+  if (loader==nullptr)
+    return false;
 
   fs::recursive_directory_iterator begin(folderPath, std::filesystem::directory_options::skip_permission_denied);
   fs::recursive_directory_iterator end;
@@ -34,6 +37,7 @@ void AssetsLoader<T>::loadAssets(std::string_view folderPath,
       loader(ref, path);
     }
   }
+  return true;
 }
 
 template<typename T>
@@ -43,13 +47,14 @@ T *AssetsLoader<T>::operator[](std::string_view name) {
 
 template<typename T>
 const T *AssetsLoader<T>::getPtr(const std::string_view name) const {
-  return getPtr(name);
+  int *const result = getPtr(name);
+  return result;
 }
 
 template<typename T>
-T *AssetsLoader<T>::getPtr(std::string_view name) {
-  if (auto res = m_storage[name]; res!=std::end(m_storage))
-    return m_storage[name];
+T *AssetsLoader<T>::getPtr(std::string name) {
+  if (auto res = m_storage.find(name); res!=std::end(m_storage))
+    return &m_storage[name];
   return nullptr;
 }
 
