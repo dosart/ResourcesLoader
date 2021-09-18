@@ -47,5 +47,6 @@ template<typename T>
 T *AssetsLoader<T>::getPtr(std::string_view name) {
   if (auto res = m_storage[name]; res!=std::end(m_storage))
     return m_storage[name];
+  return nullptr;
 }
 }
