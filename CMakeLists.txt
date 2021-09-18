@@ -49,18 +49,36 @@ add_compile_options(
 
 ###################################################################################################
 ##
-##      Source files
+##      Header library
+##
+###################################################################################################
+
+add_library(${PROJECT_NAME}_header INTERFACE)
+target_include_directories(${PROJECT_NAME}_header INTERFACE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+        $<INSTALL_INTERFACE:src>
+        )
+target_compile_features(${PROJECT_NAME}_header INTERFACE cxx_std_17)
+
+add_library(${PROJECT_NAME}::headers ALIAS ${PROJECT_NAME}_header)
+
+###################################################################################################
+##
+##      Compiled library
 ##
 ###################################################################################################
 
 
-add_library(${PROJECT_NAME} STATIC src/AssetsLoader.hpp src/AssetsLoader.inl)
+add_library(${PROJECT_NAME}_library STATIC src/AssetsLoader.hpp src/AssetsLoader.inl)
+target_link_libraries(${PROJECT_NAME}_library PUBLIC ${PROJECT_NAME}_header)
 set_target_properties(
-        ${PROJECT_NAME} PROPERTIES
+        ${PROJECT_NAME}_library PROPERTIES
         CXX_STANDARD 17
         CXX_STANDARD_REQUIRED ON
         LINKER_LANGUAGE CXX
 )
+
+add_library(${PROJECT_NAME}::library ALIAS ${PROJECT_NAME}_library)
 
 ###################################################################################################
 ##
