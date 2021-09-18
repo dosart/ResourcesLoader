@@ -28,7 +28,8 @@ set_target_properties(
 target_sources(${PROJECT_NAME}
         PRIVATE
         test_main.cpp
-        loader_tests/test.cpp
+        loader_tests/test_bad_load.cpp
+        loader_tests/test_good_load.cpp
         )
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
@@ -36,5 +37,5 @@ target_link_libraries(${PROJECT_NAME}
         pthread
         sfml-graphics
         sfml-audio
-        ResourcesLoader)
+        ResourcesLoader::library)
 
