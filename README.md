@@ -1,3 +1,5 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/38d4460ca69e4a8d8bf233e8af4a4631)](https://www.codacy.com/gh/dosart/ResourcesLoader/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dosart/ResourcesLoader&amp;utm_campaign=Badge_Grade)
+
 # ResourcesLoader
 
 Recursive Template Loader for simple loading any assets. Used for simple SFML games. 
