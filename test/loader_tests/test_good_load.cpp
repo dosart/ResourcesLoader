@@ -62,3 +62,10 @@ TEST_F(GoodLoadFixture, MusicLoad) {
 
   ASSERT_NE(musicLoader->getPtr("meow"), nullptr);
 }
+
+TEST_F(GoodLoadFixture, MusicNotExist) {
+  musicLoader->setSupportedFormats("wav", "[]");
+  musicLoader->loadAssets(resourcesDirPath, [](auto &item, auto path) { item.openFromFile(path.string()); });
+
+  ASSERT_EQ(musicLoader->getPtr("NotExist"), nullptr);
+}
