@@ -57,6 +57,7 @@ class AssetsLoader {
   *
   * @param folderPath path to folder with assets.
   * @param loader itetm.loadFromFile(path) u get only path with your formats.
+  * @return result false if folderPath not exist or loader is NULL
 */
   bool loadAssets(std::string_view folderPath,
                   std::function<void(T &item, const fs::path &itemPath)> loader);
