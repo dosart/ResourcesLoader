@@ -1,4 +1,4 @@
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/38d4460ca69e4a8d8bf233e8af4a4631)](https://www.codacy.com/gh/dosart/ResourcesLoader/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dosart/ResourcesLoader&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/38d4460ca69e4a8d8bf233e8af4a4631)](https://www.codacy.com/gh/dosart/ResourcesLoader/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dosart/ResourcesLoader&amp;utm_campaign=Badge_Grade)  ![cppcheck-action](https://github.com/stepin654321/MiniProject_Template/workflows/cppcheck-action/badge.svg) ![Valgrind](https://github.com/stepin654321/MiniProject_Template/workflows/Valgrind/badge.svg)
 
 # ResourcesLoader
 
